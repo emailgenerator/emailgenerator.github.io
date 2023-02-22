@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OpenAI Email App</title>
+
+    <link rel="stylesheet" href="css/base-style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lib/button-wavy.css">
+    
+    <script defer src="js/CONFIG.js"></script>
+    <script defer src="js/scripts.js"></script>
+    <script defer src="js/lib/utils.js"></script>
+  </head>
+  <body>
+
+    <div class="window">
+
+
+
+
+      <section>
+        <div class="two-columns">
+          <div>
+            <label>Email To</label>
+            <input placeholder="E.g. John Smith">
+          </div>
+          <div>
+            <label>Formality</label>
+            <select>
+              <option>Formal</option>
+              <option>Semi-Formal</option>
+              <option>Casual</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <label>Email Description</label>
+        <textarea></textarea>
+      </section>
+
+      <section>
+        <button class="button-wavy block" onclick="generate()">Generate!</button>
+        <textarea></textarea>
+      </section>
+
+    </div>
+
+  </body>
+
+  <script>
+
+    async function generate() {
+      const response = await fetch(CONFIG.serverAddress + '/test-openai')
+      console.log(response.json())
+    }
+
+  </script>
+</html>

@@ -1,0 +1,31 @@
+:root {
+    --wavy-black: rgb(60, 65, 65);
+    --wavy-blue: rgb(61, 209, 235);
+}
+
+.button-wavy {
+
+    background-image: linear-gradient(
+        to right,
+        var(--wavy-blue),
+        var(--wavy-blue) 50%,
+        var(--wavy-black) 50%
+    );
+    background-size: 200% 100%;
+    background-position: -100%;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.2s ease-in-out;
+
+    padding: 15px;
+    font-size: 21.5px;
+    color: var(--wavy-black);
+
+    border: solid var(--wavy-black) 2px;
+}
+.button-wavy:hover {
+    cursor: pointer;
+    background-position: 0;
+    border: solid var(--wavy-blue) 2px;
+}

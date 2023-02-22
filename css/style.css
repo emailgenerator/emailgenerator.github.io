@@ -1,0 +1,64 @@
+:root {
+    --base-font-size: 21.5px;
+
+    --padding-page: 15px;
+    --padding-small: 7px;
+}
+input, select, textarea, .block {
+    display: block;
+    width: 100%;
+
+    padding: 15px;
+    font-size: var(--base-font-size);
+    border: solid gray 2px;
+    border-radius: 5px;
+    margin-bottom: var(--padding-small);
+}
+textarea {
+    min-height: 25vh;
+}
+label {
+    display: block;
+
+    color: gray;
+    font-size: var(--base-font-size);
+
+    margin-bottom: var(--padding-small);
+}
+
+
+section {
+    margin-top: 40px;
+}
+section:first-child {
+    margin-top: 0px;
+}
+
+
+
+.window {
+    width: max(70%, 700px);
+    margin: auto;
+    padding-top: 100px;
+}
+@media (max-width: 700px) {
+    .window {
+        width: 90%;
+    }
+}
+
+
+
+.two-columns {
+    display: flex;
+}
+.two-columns > div {
+    flex: 1;
+    
+}
+.two-columns > div:first-child {
+    padding-right: var(--padding-page);
+}
+.two-columns > div:last-child {
+    padding-left: var(--padding-page);
+}

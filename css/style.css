@@ -37,7 +37,7 @@ section:first-child {
 
 
 .window {
-    width: max(70%, 700px);
+    width: max(50%, 600px);
     margin: auto;
     padding-top: 100px;
 }

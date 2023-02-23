@@ -1,0 +1,27 @@
+
+.vertical-ads > div {
+    position: fixed;
+
+    height: calc(100vh - 20px);
+    width: 15vw;
+    
+    background-color: rgb(250, 229, 229);
+    border-radius: 5px;
+
+    text-align: center;
+    line-height: calc(100vh - 20px);
+}
+.vertical-ads > div:first-child {
+    top: 10px;
+    left: 10px;
+}
+.vertical-ads > div:last-child {
+    top: 10px;
+    right: 10px;
+}
+
+@media (orientation: portrait) {
+    .vertical-ads {
+        display: none;
+    }
+}

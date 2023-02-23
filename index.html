@@ -7,6 +7,7 @@
     <title>OpenAI Email App</title>
 
     <link rel="stylesheet" href="css/lib/button-wavy.css">
+    <link rel="stylesheet" href="css/lib/loading-dual-ring.css">
     <link rel="stylesheet" href="css/base-style.css">
     <link rel="stylesheet" href="css/ads.css">
     <link rel="stylesheet" href="css/style.css">
@@ -45,11 +46,11 @@
         <div class="two-columns">
           <div>
             <label>Email To</label>
-            <input placeholder="E.g. John Smith">
+            <input id="Email-To" placeholder="E.g. John Smith" value="John Doe">
           </div>
           <div>
             <label>Formality</label>
-            <select>
+            <select id="Formality">
               <option>Formal</option>
               <option>Semi-Formal</option>
               <option>Casual</option>
@@ -60,12 +61,16 @@
 
       <section>
         <label>Email Description</label>
-        <textarea></textarea>
+        <textarea id="Email-Description">Kindly reject a job application because he does not meet the job expectations.</textarea>
       </section>
 
       <section>
-        <button class="button-wavy block" onclick="generate()">Generate!</button>
-        <textarea></textarea>
+        <button class="button-wavy block" onclick="onGenerateClick()">Generate!</button>
+        <div class="generation-loading" style="display: none">
+          <div class="lds-dual-ring"></div>
+        </div>
+        <textarea readonly id="Generated-Email"></textarea>
+        
       </section>
 
     </div>
@@ -74,10 +79,24 @@
 
   <script>
 
-    async function generate() {
-      const response = await fetch(CONFIG.serverAddress + '/test-openai')
-      console.log(response.json())
+    async function onGenerateClick() {
+      query('#Generated-Email').value = ''
+      query('.generation-loading').style.display = ''
+      const text = await sendAndGetEmail()
+      query('#Generated-Email').value = text
+      query('.generation-loading').style.display = 'none'
     }
+
+    async function sendAndGetEmail() {
+      const data = {
+        emailTo: query('#Email-To').value,
+        formality: getSelectedOptionText(query('#Formality')),
+        emailDescription: query('#Email-Description').value
+      }
+      const response = await doPostAsync(CONFIG.serverAddress + '/generate', data)
+      return response.message
+    }
+
 
   </script>
 </html>

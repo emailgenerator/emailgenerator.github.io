@@ -25,6 +25,16 @@ function doGet(url, data, callback){
     submitForm(url, data, 'get', callback)
 }
 
+async function doPostAsync(url, data) {
+    return await (await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })).json()
+}
+
 function getURLParametersAsObject() {
     function paramsToObject(entries) {
       const result = {}
@@ -43,6 +53,9 @@ function objectToURLParameters(obj) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])
     }).join('&')
     return url
+}
+function getSelectedOptionText(selectDom) {
+    return selectDom.options[selectDom.selectedIndex].text
 }
 
 
@@ -193,6 +206,12 @@ function capitalizeFirstLetter(string) {
 
 
 // DOM
+function queryAll(q) {
+    return Array.from(document.querySelectorAll(q))
+}
+function query(q) {
+    return document.querySelector(q)
+}
 function removeAllChildren(node){
     while (node.firstChild) {
         console.log("Removing " + node.firstChild);
@@ -211,4 +230,11 @@ const dom = function (str, clickListeners={}) {
         }
     }
 	return firstDiv
+}
+function sortChildren(div, sortFunc) {
+    const divChildren = Array.from(div.children)
+    divChildren.sort(sortFunc)
+    for (const child of divChildren) {
+        div.appendChild(child)
+    }
 }

@@ -1,3 +1,4 @@
 const CONFIG = {
-    serverAddress: 'http://localhost:3000'
+    serverAddress: 'https://email-generator-backend.onrender.com'
+    // serverAddress: 'http://localhost:3000'
 }
